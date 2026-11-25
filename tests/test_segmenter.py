@@ -38,3 +38,12 @@ def test_chapitre_court_fusionne():
     chapitres = segmenter(texte)
     assert len(chapitres) == 1
     assert chapitres[0].titre == "Chapitre 1 : A"
+
+
+def test_chapitre_long_coupe():
+    phrase = "Une phrase de test assez longue pour remplir le chapitre. "
+    texte = "Chapitre 1 : Long\n" + phrase * 300
+    chapitres = segmenter(texte)
+    assert len(chapitres) > 1
+    assert chapitres[0].titre == "Chapitre 1 : Long - partie 1"
+    assert all(c.nb_caracteres <= 6000 for c in chapitres)

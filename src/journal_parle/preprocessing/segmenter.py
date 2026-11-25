@@ -21,6 +21,9 @@ LONGUEUR_MIN_CHAPITRE = 200
 
 TITRE_PAR_DEFAUT = "Document"
 
+# Un chapitre plus long que ce nombre de caractères est coupé en parties
+LONGUEUR_MAX_CHAPITRE = 6000
+
 # Fin de phrase : ponctuation suivie d'espace(s) puis d'une majuscule ou d'un guillemet
 MOTIF_COUPURE = re.compile(r"(?<=[.!?…])\s+(?=[A-ZÀÂÉÈÊËÎÏÔÙÛÇ«\"“(])")
 
@@ -83,6 +86,28 @@ def _fusionner_chapitres_courts(chapitres: list[Chapitre]) -> list[Chapitre]:
     return resultat
 
 
+def _couper_chapitres_longs(chapitres: list[Chapitre]) -> list[Chapitre]:
+    """Coupe aux frontières de phrases tout chapitre dépassant LONGUEUR_MAX_CHAPITRE."""
+    resultat: list[Chapitre] = []
+    for chapitre in chapitres:
+        if chapitre.nb_caracteres <= LONGUEUR_MAX_CHAPITRE:
+            resultat.append(chapitre)
+            continue
+        parties: list[list[str]] = [[]]
+        taille = 0
+        for phrase in chapitre.phrases:
+            if taille + len(phrase) > LONGUEUR_MAX_CHAPITRE and parties[-1]:
+                parties.append([])
+                taille = 0
+            parties[-1].append(phrase)
+            taille += len(phrase)
+        for numero, phrases in enumerate(parties, start=1):
+            resultat.append(
+                Chapitre(titre=f"{chapitre.titre} - partie {numero}", phrases=phrases)
+            )
+    return resultat
+
+
 def segmenter(texte_nettoye: str) -> list[Chapitre]:
     """Découpe le texte nettoyé en chapitres contenant des phrases.
 
@@ -110,7 +135,7 @@ def segmenter(texte_nettoye: str) -> list[Chapitre]:
         courant.phrases.extend(decouper_en_phrases(ligne))
 
     chapitres = [c for c in chapitres if c.phrases]
-    return _fusionner_chapitres_courts(chapitres)
+    return _couper_chapitres_longs(_fusionner_chapitres_courts(chapitres))
 
 
 if __name__ == "__main__":
