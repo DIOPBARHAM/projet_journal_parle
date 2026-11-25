@@ -1,23 +1,23 @@
 # Extraction du texte des PDF
-pymupdf
+pymupdf==2.1
 
 # Synthèse vocale (nécessite Internet, pas de GPU)
-edge-tts
+edge-tts==7.3.1
 
 # Manipulation audio (s'appuie sur FFmpeg installé sur le système)
-pydub
+pydub==0.25.1
 
 # Reconnaissance vocale (Whisper optimisé)
-faster-whisper
+faster-whisper==1.2.1
 
 # Calcul du CER
-jiwer
+jiwer==4.0.0
 
 # Interface utilisateur
-gradio
+gradio==6.32.0
 
 # Conversion des nombres en lettres (support du français)
-num2words
+num2words==0.5.14
 
 # Tests
-pytest
+pytest==9.2.0
