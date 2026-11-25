@@ -1,0 +1,35 @@
+# --- Environnement virtuel Python ---
+.venv/
+venv/
+env/
+
+# --- Caches Python ---
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+
+# --- Secrets (ne JAMAIS les envoyer sur GitHub) ---
+.env
+*.key
+secrets.*
+
+# --- Fichiers générés par le pipeline ---
+outputs/*
+!outputs/.gitkeep
+
+# --- Audios (lourds) ---
+*.mp3
+*.wav
+*.m4a
+
+# --- Modèles téléchargés (très lourds) ---
+*.bin
+*.pt
+*.onnx
+models/
+
+# --- Fichiers de l'éditeur et du système ---
+.vscode/
+.DS_Store
+Thumbs.db
