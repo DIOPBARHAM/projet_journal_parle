@@ -11,7 +11,7 @@ from importlib import metadata
 
 # (nom du module à importer, nom du paquet pip pour lire sa version)
 BIBLIOTHEQUES = [
-    ("fitz", "pymupdf"),
+    ("pymupdf", "pymupdf"),
     ("edge_tts", "edge-tts"),
     ("pydub", "pydub"),
     ("faster_whisper", "faster-whisper"),
