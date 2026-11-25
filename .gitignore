@@ -36,3 +36,7 @@ Thumbs.db
 
 # --- Métadonnées d'installation ---
 *.egg-info/
+
+# --- PDF dont la licence n'est pas vérifiée (gardés en local) ---
+data/dev/infolettre_5e_edition.pdf
+data/test/*.pdf
