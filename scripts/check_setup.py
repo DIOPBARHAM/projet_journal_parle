@@ -32,7 +32,6 @@ def verifier_python() -> bool:
     print(f"[ATTENTION] Python {texte} : la plage conseillée est 3.10 à 3.12")
     return False
 
-
 def verifier_bibliotheque(module: str, paquet: str) -> bool:
     """Tente d'importer une bibliothèque et affiche sa version."""
     try:
