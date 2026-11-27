@@ -14,6 +14,7 @@ from pathlib import Path
 from num2words import num2words
 
 FICHIER_SIGLES = Path(__file__).with_name("sigles.json")
+FICHIER_PRONONCIATIONS = Path(__file__).with_name("prononciations.json")
 
 MOIS = [
     "janvier", "février", "mars", "avril", "mai", "juin", "juillet",
@@ -33,6 +34,11 @@ def charger_sigles(chemin: Path = FICHIER_SIGLES) -> dict[str, str]:
         return {}
     with chemin.open(encoding="utf-8") as fichier:
         return json.load(fichier)
+
+
+def charger_prononciations(chemin: Path = FICHIER_PRONONCIATIONS) -> dict[str, str]:
+    """Charge le dictionnaire de prononciation des mots (noms propres, lieux)."""
+    return charger_sigles(chemin)
 
 
 def _en_entier(texte: str) -> int:
@@ -61,6 +67,27 @@ def _decimal_en_lettres(partie_entiere: str, partie_decimale: str) -> str:
 
 
 # --- Règles, appliquées dans cet ordre -------------------------------------------------
+
+
+def _normaliser_dates_completes(texte: str) -> str:
+    """'11/10/26' -> 'onze octobre deux mille vingt-six' (jour/mois/année).
+
+    Séparateurs acceptés : / . - (le même des deux côtés).
+    Année sur 2 chiffres : 00-49 -> 20xx, 50-99 -> 19xx (hypothèse de ma part).
+    """
+
+    def date(m: re.Match) -> str:
+        jour, mois, annee = int(m.group(1)), int(m.group(3)), m.group(4)
+        if not (1 <= jour <= 31 and 1 <= mois <= 12):
+            return m.group(0)
+        valeur = int(annee)
+        if len(annee) == 2:
+            valeur += 2000 if valeur <= 49 else 1900
+        premier = "premier" if jour == 1 else nombre_en_lettres(jour)
+        return f"{premier} {MOIS[mois - 1]} {nombre_en_lettres(valeur)}"
+
+    motif = r"(?<![\d/.\-])(\d{1,2})([/.\-])(\d{1,2})\2(\d{4}|\d{2})(?![\d/])"
+    return re.sub(motif, date, texte)
 
 
 def _normaliser_dates(texte: str) -> str:
@@ -157,6 +184,20 @@ def _normaliser_nombres(texte: str) -> str:
     return re.sub(rf"\d+[.,]\d+|{MOTIF_NOMBRE}", nombre, texte)
 
 
+def _normaliser_mots(texte: str, mots: dict[str, str]) -> str:
+    """Remplace les mots du dictionnaire (insensible à la casse), mots longs d'abord."""
+    if not mots:
+        return texte
+    motif = "|".join(re.escape(m) for m in sorted(mots, key=len, reverse=True))
+    table = {m.lower(): v for m, v in mots.items()}
+    return re.sub(
+        rf"\b(?:{motif})\b",
+        lambda m: table[m.group(0).lower()],
+        texte,
+        flags=re.IGNORECASE,
+    )
+
+
 def _normaliser_sigles(texte: str, sigles: dict[str, str]) -> str:
     """Remplace les sigles : dictionnaire d'abord, sinon épellation lettre par lettre.
 
@@ -175,28 +216,38 @@ def _normaliser_sigles(texte: str, sigles: dict[str, str]) -> str:
     return re.sub(r"\b[A-ZÉÈÀ]{2,8}\b", sigle, texte)
 
 
-def normaliser_texte(texte: str, sigles: dict[str, str] | None = None) -> str:
+def normaliser_texte(
+    texte: str,
+    sigles: dict[str, str] | None = None,
+    prononciations: dict[str, str] | None = None,
+) -> str:
     """Applique toutes les règles de normalisation dans le bon ordre.
 
     Paramètres :
         texte: texte nettoyé (sortie de cleaner.py).
-        sigles: dictionnaire de prononciation ; chargé depuis sigles.json si absent.
+        sigles: dictionnaire des sigles ; chargé depuis sigles.json si absent.
+        prononciations: dictionnaire des mots ; chargé depuis prononciations.json si absent.
 
     Retourne :
         Le texte prêt à être lu par la synthèse vocale.
     """
     if sigles is None:
         sigles = charger_sigles()
+    if prononciations is None:
+        prononciations = charger_prononciations()
 
     texte = texte.replace("\u00a0", " ").replace("\u202f", " ")
     texte = _normaliser_monnaies(texte)       # avant les nombres simples
+    texte = _normaliser_dates_completes(texte)  # avant jour/mois
     texte = _normaliser_dates(texte)
     texte = _normaliser_heures(texte)
     texte = _normaliser_pourcentages(texte)
     texte = _normaliser_ordinaux(texte)
     texte = _normaliser_unites(texte)
     texte = _normaliser_nombres(texte)
+    texte = _normaliser_mots(texte, prononciations)  # avant les sigles
     texte = _normaliser_sigles(texte, sigles)
+    texte = texte.replace("/", " ")           # "/" restant : jamais lu à voix haute
     return re.sub(r"[ \t]+", " ", texte)
 
 
