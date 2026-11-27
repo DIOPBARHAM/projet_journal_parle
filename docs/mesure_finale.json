@@ -1,0 +1,435 @@
+[
+  {
+    "pdf": "rapport_public_2007.pdf",
+    "modele_whisper": "small",
+    "nb_phrases": 15,
+    "duree_audio_s": 224.0,
+    "S": 30,
+    "D": 56,
+    "I": 28,
+    "N": 3816,
+    "cer_pourcent": 2.99,
+    "erreurs": [
+      {
+        "type": "substitution",
+        "reference": "bilan",
+        "transcription": "biland"
+      },
+      {
+        "type": "suppression",
+        "reference": "e",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "è",
+        "transcription": "e"
+      },
+      {
+        "type": "suppression",
+        "reference": "e",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "e",
+        "transcription": "u"
+      },
+      {
+        "type": "suppression",
+        "reference": "é",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "é",
+        "transcription": "et"
+      },
+      {
+        "type": "substitution",
+        "reference": "approfondis t a",
+        "transcription": "à profondité à"
+      },
+      {
+        "type": "substitution",
+        "reference": "a sept organismes",
+        "transcription": "à cet organisme"
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "c h a"
+      },
+      {
+        "type": "substitution",
+        "reference": "chap",
+        "transcription": "p"
+      },
+      {
+        "type": "substitution",
+        "reference": "des",
+        "transcription": "décrédits"
+      },
+      {
+        "type": "suppression",
+        "reference": "crédits",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "n",
+        "transcription": "numéro"
+      },
+      {
+        "type": "substitution",
+        "reference": "compensé",
+        "transcription": "compensés"
+      },
+      {
+        "type": "substitution",
+        "reference": "milliard",
+        "transcription": "milliards"
+      },
+      {
+        "type": "substitution",
+        "reference": "observations magistrats",
+        "transcription": "observation magistra"
+      },
+      {
+        "type": "substitution",
+        "reference": "détachements",
+        "transcription": "détachement"
+      },
+      {
+        "type": "substitution",
+        "reference": "cabinets ministériels",
+        "transcription": "cabinet ministériel"
+      },
+      {
+        "type": "substitution",
+        "reference": "parquet un",
+        "transcription": "par quai"
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "plus"
+      },
+      {
+        "type": "substitution",
+        "reference": "treize assistants",
+        "transcription": "très assistant"
+      },
+      {
+        "type": "suppression",
+        "reference": "onze",
+        "transcription": ""
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "m a"
+      },
+      {
+        "type": "substitution",
+        "reference": "mag",
+        "transcription": "g"
+      },
+      {
+        "type": "substitution",
+        "reference": "admin",
+        "transcription": "admine"
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "et"
+      },
+      {
+        "type": "substitution",
+        "reference": "activités juridictionnelles",
+        "transcription": "activité juridictionnelle"
+      },
+      {
+        "type": "substitution",
+        "reference": "paierie régionale de kolda",
+        "transcription": "périrégionale de col da"
+      },
+      {
+        "type": "substitution",
+        "reference": "ziguinchor",
+        "transcription": "zyginschor"
+      },
+      {
+        "type": "substitution",
+        "reference": "dix",
+        "transcription": "des"
+      },
+      {
+        "type": "substitution",
+        "reference": "diourbel tivaouane diacksao",
+        "transcription": "durbel tivawan diaxau"
+      },
+      {
+        "type": "substitution",
+        "reference": "notaire pikine nord djida thiaroye kao dalifort",
+        "transcription": "nauter pikin nor jidatiarwakao dalifor diamagen sikap"
+      },
+      {
+        "type": "suppression",
+        "reference": "diamaguene sicap",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "pikine ouest",
+        "transcription": "pikin west"
+      },
+      {
+        "type": "substitution",
+        "reference": "quitus",
+        "transcription": "quittus"
+      },
+      {
+        "type": "substitution",
+        "reference": "reddition",
+        "transcription": "rédition"
+      }
+    ],
+    "temps_calcul_s": 109
+  },
+  {
+    "pdf": "test_infolettre_8e_edition.pdf",
+    "modele_whisper": "small",
+    "nb_phrases": 9,
+    "duree_audio_s": 200.5,
+    "S": 27,
+    "D": 47,
+    "I": 34,
+    "N": 3235,
+    "cer_pourcent": 3.34,
+    "erreurs": [
+      {
+        "type": "suppression",
+        "reference": "a",
+        "transcription": ""
+      },
+      {
+        "type": "suppression",
+        "reference": "e",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "lucade",
+        "transcription": "ucade"
+      },
+      {
+        "type": "substitution",
+        "reference": "dote",
+        "transcription": "dotent"
+      },
+      {
+        "type": "substitution",
+        "reference": "activités pédagogiques",
+        "transcription": "activité pédagogique"
+      },
+      {
+        "type": "substitution",
+        "reference": "scientifiques",
+        "transcription": "scientifique"
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "seize"
+      },
+      {
+        "type": "substitution",
+        "reference": "seizeh",
+        "transcription": "ans"
+      },
+      {
+        "type": "substitution",
+        "reference": "excellence",
+        "transcription": "excellences"
+      },
+      {
+        "type": "substitution",
+        "reference": "e",
+        "transcription": "et"
+      },
+      {
+        "type": "suppression",
+        "reference": "a",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "cybersécurité",
+        "transcription": "subversécurité"
+      },
+      {
+        "type": "suppression",
+        "reference": "e",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "a",
+        "transcription": "arrestitue"
+      },
+      {
+        "type": "suppression",
+        "reference": "restitue",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "national",
+        "transcription": "nationale"
+      },
+      {
+        "type": "substitution",
+        "reference": "lucade",
+        "transcription": "ucade"
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "c a"
+      },
+      {
+        "type": "substitution",
+        "reference": "cap",
+        "transcription": "p"
+      },
+      {
+        "type": "substitution",
+        "reference": "kédougou",
+        "transcription": "kedougou"
+      },
+      {
+        "type": "substitution",
+        "reference": "lucade terrascape",
+        "transcription": "ucade terrascap"
+      },
+      {
+        "type": "substitution",
+        "reference": "lucade",
+        "transcription": "ucade"
+      },
+      {
+        "type": "substitution",
+        "reference": "lucade",
+        "transcription": "ucade"
+      },
+      {
+        "type": "suppression",
+        "reference": "e",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "énergies renouvelables",
+        "transcription": "énergie renouvelable"
+      },
+      {
+        "type": "suppression",
+        "reference": "e",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "python",
+        "transcription": "piton"
+      },
+      {
+        "type": "substitution",
+        "reference": "des",
+        "transcription": "dépanier"
+      },
+      {
+        "type": "suppression",
+        "reference": "paniers",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "carême",
+        "transcription": "karem"
+      },
+      {
+        "type": "substitution",
+        "reference": "pr ismaïla diouf",
+        "transcription": "professeur ismail adyuf"
+      },
+      {
+        "type": "substitution",
+        "reference": "pr",
+        "transcription": "professeur"
+      },
+      {
+        "type": "substitution",
+        "reference": "sidibé",
+        "transcription": "sidibe"
+      },
+      {
+        "type": "substitution",
+        "reference": "mme mariame wone",
+        "transcription": "madame maria mwankhain"
+      },
+      {
+        "type": "suppression",
+        "reference": "kane",
+        "transcription": ""
+      },
+      {
+        "type": "substitution",
+        "reference": "coïncidant",
+        "transcription": "coincidant"
+      },
+      {
+        "type": "substitution",
+        "reference": "carême",
+        "transcription": "karem"
+      },
+      {
+        "type": "substitution",
+        "reference": "a",
+        "transcription": "à"
+      },
+      {
+        "type": "substitution",
+        "reference": "enseignants",
+        "transcription": "enseignant"
+      },
+      {
+        "type": "substitution",
+        "reference": "monsieur mansor",
+        "transcription": "m mansour"
+      },
+      {
+        "type": "substitution",
+        "reference": "mariame wone kane",
+        "transcription": "maria mwankhain chef"
+      },
+      {
+        "type": "suppression",
+        "reference": "cheffe",
+        "transcription": ""
+      },
+      {
+        "type": "insertion",
+        "reference": "",
+        "transcription": "la"
+      },
+      {
+        "type": "substitution",
+        "reference": "lallocution",
+        "transcription": "locution"
+      }
+    ],
+    "temps_calcul_s": 106
+  }
+]
