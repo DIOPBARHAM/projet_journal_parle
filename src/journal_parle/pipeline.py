@@ -14,13 +14,14 @@ from journal_parle.evaluation.metrics import ResultatCER, evaluer_audio
 from journal_parle.evaluation.transcriber import ErreurTranscription, transcrire
 from journal_parle.extraction.pdf_reader import ErreurExtractionPDF, extraire_pages
 from journal_parle.preprocessing.cleaner import nettoyer_pages
-from journal_parle.preprocessing.segmenter import segmenter
+from journal_parle.preprocessing.segmenter import Chapitre, segmenter
 from journal_parle.tts.audio_assembler import ErreurAssemblage, assembler
 from journal_parle.tts.chapter_audio import ChapitreAudio, synthetiser_chapitre
 from journal_parle.tts.tts_engine import VOIX_PAR_DEFAUT, ErreurSynthese
 
 DOSSIER_RESULTATS = Path("outputs/pipeline")
 NB_CARACTERES_EVALUATION = 3000
+TEXTE_AVERTISSEMENT = "Cet audio a été généré par synthèse vocale."
 
 ErreurPipeline = (ErreurExtractionPDF, ErreurSynthese, ErreurAssemblage, ErreurTranscription)
 
@@ -69,8 +70,17 @@ def executer(
         avancer(0.1 + 0.7 * (i - 1) / len(chapitres), f"Synthèse {i}/{len(chapitres)} : {chapitre.titre}")
         audios.append(synthetiser_chapitre(chapitre, i, dossier_chapitres, voix))
 
+    avancer(0.82, "Annonce : contenu synthétique")
+    avertissement = synthetiser_chapitre(
+        Chapitre("Avertissement", [TEXTE_AVERTISSEMENT]), 0, dossier_chapitres, voix
+    )
+
     avancer(0.85, "Assemblage du MP3 final")
-    mp3 = assembler(audios, dossier / "journal_parle.mp3", dossier / "chapitres.txt")
+    mp3 = assembler(
+        [avertissement] + audios,
+        dossier / "journal_parle.mp3",
+        dossier / "chapitres.txt",
+    )
 
     cer = None
     if evaluer:
