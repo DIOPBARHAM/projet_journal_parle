@@ -21,3 +21,5 @@ num2words==0.5.14
 
 # Tests
 pytest==9.2.0
+
+av==18.0.0
