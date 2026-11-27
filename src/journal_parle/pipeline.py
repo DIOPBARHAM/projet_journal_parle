@@ -74,9 +74,10 @@ def executer(
 
     cer = None
     if evaluer:
-        avancer(0.9, "Transcription Whisper et calcul du CER")
         reference = audios[0].texte_lu.read_text(encoding="utf-8")
-        cer = evaluer_audio(reference[:NB_CARACTERES_EVALUATION], transcrire(audios[0].mp3))
+        if len(reference) <= NB_CARACTERES_EVALUATION:
+            avancer(0.9, "Transcription Whisper et calcul du CER")
+            cer = evaluer_audio(reference, transcrire(audios[0].mp3))
     avancer(1.0, "Terminé")
     return ResultatPipeline(mp3, dossier / "chapitres.txt", audios, cer)
 
