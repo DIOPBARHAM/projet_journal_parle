@@ -39,7 +39,8 @@ class ResultatCER:
 def preparer_pour_comparaison(texte: str) -> str:
     """Minuscules, ponctuation retirée, espaces réduits (accents conservés)."""
     texte = texte.lower()
-    texte = re.sub(r"[^\w\s]|_", " ", texte)  # apostrophes, tirets, ponctuation -> espace
+    texte = texte.replace("'", "").replace("\u2019", "")
+    texte = re.sub(r"[^\w\s]|_", " ", texte)  # tirets, ponctuation -> espace
     return re.sub(r"\s+", " ", texte).strip()
 
 

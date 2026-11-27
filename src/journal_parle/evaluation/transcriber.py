@@ -52,7 +52,12 @@ def transcrire(audio: str | Path, modele: str = MODELE_PAR_DEFAUT) -> str:
         raise ErreurTranscription(f"Fichier audio introuvable : {chemin}")
     whisper = _charger_modele(modele)
     try:
-        segments, _ = whisper.transcribe(str(chemin), language="fr", beam_size=5)
+        segments, _ = whisper.transcribe(
+            str(chemin),
+            language="fr",
+            beam_size=5,
+            vad_filter=True,
+        )
         return " ".join(s.text.strip() for s in segments).strip()
     except Exception as erreur:
         raise ErreurTranscription(f"Échec de la transcription : {erreur}") from erreur

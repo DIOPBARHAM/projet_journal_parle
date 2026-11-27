@@ -33,4 +33,4 @@ def test_reference_vide():
 
 
 def test_preparation():
-    assert preparer_pour_comparaison("L'UCAD, ouvre !") == "l ucad ouvre"
+    assert preparer_pour_comparaison("L'UCAD, ouvre !") == "lucad ouvre"
